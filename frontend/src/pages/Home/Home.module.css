@@ -1,0 +1,104 @@
+/* src/pages/Home/Home.module.css */
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.navLink:hover {
+  background: #f3f3f3;
+}
+
+.cta {
+  background: #111827;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.main {
+  margin-top: 12px;
+}
+
+.message {
+  color: #555;
+}
+
+.messageError {
+  color: #b91c1c;
+}
+
+/* grid of posts */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  border: 1px solid #e5e7eb;
+  padding: 16px;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.postTitle {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.excerpt {
+  margin: 0 0 12px 0;
+  color: #374151;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meta {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.readMore {
+  text-decoration: none;
+  color: #111827;
+  font-weight: 600;
+}
