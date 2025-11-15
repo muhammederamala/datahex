@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Signup/Signup";
 import CreatePost from "./pages/CreatePost/CreatePost";
 import Home from "./pages/Home/Home";
+import PostDetail from "./pages/PostDetail/PostDetail";
 
 function App() {
   return (
@@ -31,14 +32,14 @@ function App() {
         }
       />
 
-      {/* <Route
-          path="/post/edit/:id"
-          element={
-            <ProtectedRoute>
-              <EditPost />
-            </ProtectedRoute>
-          }
-        /> */}
+      <Route
+        path="/post"
+        element={
+          <ProtectedRoute>
+            <PostDetail />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

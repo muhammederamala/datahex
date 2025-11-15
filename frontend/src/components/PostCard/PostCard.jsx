@@ -1,10 +1,9 @@
-// src/components/PostCard/PostCard.jsx
 import React from "react";
 import { Link } from "react-router-dom";
+import { deletePost } from "../../services/post";
 
-const PostCard = ({ post, isDashboard = false }) => {
+const PostCard = ({ post, isDashboard = false, handleDelete }) => {
   const { _id, title, content, user, author, authorName } = post;
-
   const displayName = user?.name || author?.name || authorName || "Unknown";
 
   return (
@@ -19,21 +18,31 @@ const PostCard = ({ post, isDashboard = false }) => {
           </p>
           <div className="d-flex justify-content-between align-items-center mt-3">
             <small className="text-secondary">By: {displayName}</small>
-            {isDashboard ? (
-              <Link
-                to={`/post/edit/${_id}`}
-                className="btn btn-sm btn-outline-secondary"
-              >
-                Edit
-              </Link>
-            ) : (
-              <Link
-                to={`/post/${_id}`}
-                className="btn btn-sm btn-outline-primary"
-              >
-                Read
-              </Link>
-            )}
+            <div>
+              {isDashboard ? (
+                <>
+                  <Link
+                    to={`/post/create?id=${_id}`}
+                    className="btn btn-sm btn-outline-secondary me-2"
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(_id)}
+                    className="btn btn-sm btn-outline-danger"
+                  >
+                    Delete
+                  </button>
+                </>
+              ) : (
+                <Link
+                  to={`/post?id=${_id}`}
+                  className="btn btn-sm btn-outline-primary"
+                >
+                  Read
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </div>

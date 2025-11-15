@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getMyPosts } from "../../services/post";
+import { deletePost, getMyPosts } from "../../services/post";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import PostCard from "../../components/PostCard/PostCard";
@@ -13,6 +13,19 @@ const Dashboard = () => {
       setPosts(data || []);
     } catch (error) {
       console.error("Failed to load posts:", error);
+    }
+  };
+
+  const handleDelete = async (_id) => {
+    if (window.confirm("Are you sure you want to delete this post?")) {
+      try {
+        await deletePost(_id);
+      } catch (error) {
+        console.error("Failed to delete post:", error);
+        alert("Something went wrong while deleting the post.");
+      } finally {
+        loadPosts();
+      }
     }
   };
 
@@ -36,7 +49,12 @@ const Dashboard = () => {
         ) : (
           <div className="row">
             {posts.map((post) => (
-              <PostCard key={post._id} post={post} isDashboard={true} />
+              <PostCard
+                handleDelete={handleDelete}
+                key={post._id}
+                post={post}
+                isDashboard={true}
+              />
             ))}
           </div>
         )}

@@ -5,7 +5,7 @@ import { createPost, getPost, updatePost } from "../../services/post";
 const CreatePost = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const postId = searchParams.get("postId");
+  const postId = searchParams.get("id");
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -16,8 +16,9 @@ const CreatePost = () => {
       setLoading(true);
       getPost(postId)
         .then(({ data }) => {
-          setTitle(data.post.title);
-          setContent(data.post.content);
+          const post = data.post ?? data;
+          setTitle(post.title);
+          setContent(post.content);
         })
         .catch((err) => console.error("Failed to load post:", err))
         .finally(() => setLoading(false));
@@ -33,10 +34,8 @@ const CreatePost = () => {
     try {
       if (postId) {
         await updatePost(postId, { title, content });
-        alert("Post updated successfully!");
       } else {
         await createPost({ title, content });
-        alert("Post created successfully!");
       }
       navigate("/dashboard");
     } catch (error) {
